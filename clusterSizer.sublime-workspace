@@ -1,0 +1,1223 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"scr",
+				"script	Tag"
+			],
+			[
+				"script",
+				"SCRIPT	Tag"
+			],
+			[
+				"capa",
+				"capacityCost"
+			],
+			[
+				"monetizedEner",
+				"monetizedEnergy"
+			],
+			[
+				"monetizedEnerg",
+				"monetizedEnergyBalance"
+			],
+			[
+				"appare",
+				"apparentPower"
+			],
+			[
+				"remov",
+				"removeEventListener"
+			],
+			[
+				"ob",
+				"subObCount"
+			],
+			[
+				"allTrans",
+				"allTransFromToNames"
+			],
+			[
+				"border-top-lef",
+				"border-top-left-radius:   (property)"
+			],
+			[
+				"appar",
+				"apparentPower"
+			],
+			[
+				"process",
+				"processMonths"
+			],
+			[
+				"uniqu",
+				"uniqueNameCounts"
+			],
+			[
+				"sourceFee",
+				"sourceFeedName"
+			],
+			[
+				"attach",
+				"attachedToRevealed"
+			],
+			[
+				"linkStren",
+				"LinkStrength"
+			],
+			[
+				"linkDis",
+				"linkDistanceBox"
+			],
+			[
+				"styl",
+				"STYLE	Tag"
+			],
+			[
+				"comp",
+				"components"
+			],
+			[
+				"redraw",
+				"redraw"
+			],
+			[
+				"omf",
+				"omfEmbeddedConfigObject"
+			],
+			[
+				"pprint",
+				"pprint  (function)"
+			],
+			[
+				"voltageBan",
+				"voltageBandReport"
+			],
+			[
+				"regul",
+				"regulatorPowerflow"
+			],
+			[
+				"__",
+				"__csvToArray__"
+			],
+			[
+				"power",
+				"powerflowReport"
+			],
+			[
+				"powerf",
+				"powerflowContainer"
+			],
+			[
+				"dirNo",
+				"dirNoPickNoSuffix"
+			],
+			[
+				"treeInd",
+				"treeIndexToNodeIndex"
+			],
+			[
+				"color",
+				"background-color"
+			],
+			[
+				"cond",
+				"conductor_N"
+			],
+			[
+				"conduct",
+				"conductor_2"
+			],
+			[
+				"object",
+				"objectType"
+			],
+			[
+				"paren",
+				"parentChild"
+			],
+			[
+				"pare",
+				"parentChild"
+			],
+			[
+				"newObj",
+				"newObjectMenu"
+			],
+			[
+				"newOb",
+				"newObjectMenu"
+			],
+			[
+				"canc",
+				"cancelButton"
+			],
+			[
+				"curr",
+				"currentName"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"objec",
+				"objectInstance"
+			],
+			[
+				"dire",
+				"directory"
+			],
+			[
+				"obj",
+				"objectInstance"
+			],
+			[
+				"du",
+				"dump  (function)"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"input",
+				"inputData"
+			],
+			[
+				"inpu",
+				"inputData"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"links",
+				"links"
+			],
+			[
+				"h",
+				"h"
+			],
+			[
+				"th",
+				"th"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"block",
+				"inline-block"
+			],
+			[
+				"pr",
+				"prettyPrintNestedDicts"
+			],
+			[
+				"p",
+				"p"
+			],
+			[
+				"anaSpe",
+				"anaSpec1hour"
+			],
+			[
+				"simLe",
+				"simLength"
+			],
+			[
+				"simLeng",
+				"simLengthUnits"
+			],
+			[
+				"simL",
+				"simLengthUnits"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 278.0,
+		"selected_items":
+		[
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"project",
+				"Project: Close"
+			],
+			[
+				"browser",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"package remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"preview",
+				"Preview"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"convert tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"main",
+				"Snippet: if __name__ == '__main__'"
+			],
+			[
+				"synt pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"env",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"package contr",
+				"Package Control: Remove Package"
+			],
+			[
+				"pinney",
+				"David Pinney"
+			],
+			[
+				"reveal",
+				"File: Reveal"
+			],
+			[
+				"brow",
+				"View In Browser"
+			],
+			[
+				"view in ",
+				"View In Browser"
+			],
+			[
+				"view in b",
+				"View In Browser"
+			],
+			[
+				"package insta",
+				"Package Control: Install Package"
+			],
+			[
+				"new file",
+				"File: New File Relative to Current View"
+			],
+			[
+				"git reset",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git rese",
+				"Git: Reset (unstage) Current File"
+			],
+			[
+				"git unstage",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"javascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"javascrip",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"reinden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"books",
+				"Bookmarks: Select Previous"
+			],
+			[
+				"bookm",
+				"Bookmarks: Toggle"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"line",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"git stash",
+				"Git: Stash Drop"
+			],
+			[
+				"stash drop",
+				"Git: Stash Drop"
+			],
+			[
+				"git stash drop",
+				"Git: Stash Drop"
+			],
+			[
+				"inden",
+				"Indent XML"
+			],
+			[
+				"indent",
+				"Indent XML"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"format",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"#!",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"if main",
+				"Snippet: if __name__ == '__main__'"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"syntax pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"reports",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"word wr",
+				"Word Wrap: Toggle"
+			],
+			[
+				"set synt pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"pyth",
+				"SublimeREPL: Python"
+			],
+			[
+				"prettyp ",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"pretty prin",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"python",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"set json",
+				"Set Syntax: JSON"
+			],
+			[
+				"set pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"auto",
+				"User: Python PEP8 Autoformat"
+			],
+			[
+				"pack instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"json pre",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"bookmark",
+				"Bookmarks: Select All"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"sideba",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"browse pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"syn pyth",
+				"Set Syntax: Python"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"packages",
+				"Preferences: Browse Packages"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"package remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"rep",
+				"SublimeREPL: Python"
+			],
+			[
+				"pyton",
+				"SublimeREPL: Python"
+			],
+			[
+				"repl py",
+				"SublimeREPL: Python"
+			],
+			[
+				"python ",
+				"SublimeREPL: Python"
+			],
+			[
+				"search",
+				"File: Search Files"
+			],
+			[
+				"open in b",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"open in bro",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"openInBrowser",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"fold",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"sidebar",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"name",
+				"Snippet: if __name__ == '__main__'"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"view",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"package remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"got",
+				"Rope: Go to Definition"
+			],
+			[
+				"new proj",
+				"Rope: New Project"
+			],
+			[
+				"toggle",
+				"View: Toggle Open Files in Side Bar"
+			],
+			[
+				"new class",
+				"Snippet: New Class"
+			],
+			[
+				"togg",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 386.0
+	},
+	"console":
+	{
+		"height": 422.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/dwp0/Dropbox/ClusterSizer/.gitignore",
+		"/C/Users/dwp0/Dropbox/ClusterSizer/main.html",
+		"/C/Users/dwp0/Dropbox/Project Euler/library.py",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/HTML/HTML.sublime-build",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/View In Browser/settings.json",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/Gridlab/GridlabD.sublime-build",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/HTML/HTML.tmLanguage",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/dwp0/Dropbox/Project Euler/01.html",
+		"/C/Users/dwp0/Dropbox/Project Euler/01.js",
+		"/C/Users/dwp0/Dropbox/Project Euler/02.py",
+		"/C/Users/dwp0/Dropbox/Project Euler/12.py",
+		"/C/Users/dwp0/Dropbox/Project Euler/divisors.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/embedScheduleTest/scheduleParser.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/importTests/importTests.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/treeParser.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/schedules.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/000 Schedule Debug/studies/edited/light_schedule.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/templates/gridEdit.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/static/omf.js",
+		"/C/Users/dwp0/Desktop/test.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Debug File Houses NR/main.json",
+		"/C/Users/dwp0/Dropbox/OMF/omf/uploads/INEC-GRAHAM.std",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Battery Test/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Battery Test/studies/Batt/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Battery Test/studies/NoBatt/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Training/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Training/studies/CVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Training/studies/NoCVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Solar Test IEEE 13 Node/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Solar Test IEEE 13 Node/studies/LotsaSun/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Solar Test IEEE 13 Node/studies/NoSolar/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zCVR ACEC 3M/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zCVR ACEC 3M/studies/CVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zCVR ACEC 3M/studies/NoCVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zSolar Trio/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zSolar Trio/studies/CommSolar/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zSolar Trio/studies/IndySolar/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/zSolar Trio/studies/NoSolar/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/103 DAY TEST/studies/DayTest/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/2DayMinuteRez/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/2DayMinuteRez/studies/Study/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC House Climate Debug/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC House Climate Debug/studies/CA/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC NR Debug/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC NR Debug/studies/CA/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Test 2/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Test 2/studies/CVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Test 2/studies/NoCVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/YearLongCVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/YearLongCVR/studies/CVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/YearLongCVR/studies/NoCVR/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/103 DAY TEST/metadata.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/tmy2s/AL-BIRMINGHAM.tmy2",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/CVR Test 2/studies/CVR/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC CVR Test/studies/CVR/Capacitor_CAP1.csv",
+		"/C/Users/dwp0/Dropbox/OMF/omf/static/jquery-1.8.3.min.js",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analysis.py",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/DavidPinney.sublime-commands",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/DavidPinney.py",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/Main.sublime-menu",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/settings.json",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/LICENSE",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/Default (Windows).sublime-keymap",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/Context.sublime-menu",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/readme.md",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/User/Side Bar.sublime-settings",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/SideBarEnhancements/Side Bar.sublime-menu",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/statusTimeline.py",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/View In Browser/README.md",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/highchartsTest.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/templates/home.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/capActTest.html",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/User/davidPinney.py",
+		"/C/Users/dwp0/AppData/Roaming/Sublime Text 2/Packages/DavidPinney/davidpinney.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/embedScheduleTest/disembedded.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/embedScheduleTest/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/embedScheduleTest/test.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/regexParser/neoTreeParser.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/regexParser/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/regexParser/embedScheduleTest/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/regexParser/treeParser.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/feederPowerConsumption.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/monetizationOutput.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/__util__.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/voltageBand.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/regulatorPowerflow.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/meterPowerflow.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/climate.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/capacitorActivation.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/monetization.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/javascriptDump.js",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/massiveDataTableTest.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/__OLD__monetization__.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/monetizationConfig.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/jinjaTemplateTest.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/jinjaTemplateTest.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/monetization.out.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/studyDetails.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/monetization.js",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/Reztest1Day/studies/Study/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/templates/viewReports.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/runtimeStats.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/reports/test.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/static/omf.css",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/locCount.py",
+		"/C/Users/dwp0/Downloads/Notification Detail (2).html",
+		"/C/Users/dwp0/Downloads/Notification Detail (1).html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/omf.py",
+		"/C/Users/dwp0/AppData/Local/Temp/Temp1_bootstrap (2).zip/bootstrap/js/bootstrap.js",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACEC houses again/studies/acec/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/templates/newAnalysis.html",
+		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Full Conversion Housed LO/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Full Conversion Housed LO/main.json",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acecHoused/debug.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Full Conversion LOS/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACECHouses/studies/acec/main.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/milToGridlab.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/settings.txt",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/houses.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecDisembed.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-NEOSYNTH.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-DISEMB.glm",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecConvert.py",
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/dupDebug.py"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\reports",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\reports",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\reports",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\reports",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\reports",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses\\",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\analyses",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\analyses\\",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\feeders\\",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\refactor",
+			"<project>",
+			"C:\\Users\\dwp0\\Dropbox\\OMF\\Source\\doedemo"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"-",
+			"x",
+			"object waterheater \\{\\n(.|.\\n)*\\}",
+			"object waterheater \\{(.*\\n)*\\}",
+			"object waterheater \\{\\n[.\\n]*\\}",
+			"battery",
+			"Owen",
+			"ILEC",
+			"ACEC",
+			"   ",
+			"    ",
+			"randomHouse",
+			"light",
+			"\\n",
+			";",
+			"(-|\\d).*",
+			"\\n",
+			";",
+			"\\d.*",
+			"schedule_skew ",
+			"base_power.*",
+			"schedule_skew.*",
+			"object ZIPload \\{\\n(.|.\\n)*\\}",
+			"schedule_skew ",
+			"ZIPLoad",
+			"WA-SEATTLE",
+			"TX-HOUSTON",
+			"TX-",
+			"NY-NEW_YORK",
+			"ND-FARGO",
+			"IL-CHICAGO",
+			"HI-HONOLULU",
+			"HI-",
+			"FL-KEY_WEST",
+			"CO-BOULDER",
+			"CA-SAN_FRANCISCO",
+			"CA-LOS_ANGELES",
+			"AZ-TUCSON",
+			"AZ-TUSCON.tmy2",
+			"AZ-TUSCON",
+			"AL-",
+			"AL-BIRMINGHAM",
+			"volt_var",
+			"View In Browser",
+			"open_new_tab",
+			"View In Browser",
+			"view_in_browser",
+			"\\w+\\s+([\\w\\d\\.\\*]+?;)",
+			"\\w+\\s+(.+?;)",
+			"\\s+",
+			"\\n",
+			"(object\\s+house\\s*\\{\\n*(\\s*\\w+\\s+(.*);\\n*)+\\s*\\};*)",
+			"(clock|object|module)",
+			"data",
+			"posSig",
+			"baseCost",
+			"'categories'",
+			"monEnergyGraphParams",
+			"monPowGraphParams",
+			"colorMap",
+			"monEnergyGraphParams",
+			"200",
+			"capTotals",
+			"monEnergy",
+			"monPower",
+			"newData",
+			"[0:endPos]",
+			"#",
+			"newL[-0]",
+			"append",
+			"item",
+			"inL",
+			"configHtmlTemplate",
+			"data",
+			"Data",
+			"data",
+			"timeScale",
+			"swinger",
+			"l",
+			"item",
+			"row",
+			".csv",
+			"csv",
+			"output",
+			"copy",
+			"\\\\n'",
+			"\\n'",
+			"outputBuffer.*",
+			"el",
+			"scratch",
+			"__util__",
+			"interval ",
+			"interval\\w+\\d+;",
+			"interval",
+			"metadata.txt",
+			"pprint",
+			"__util__",
+			"fileSlurp",
+			"lib.",
+			"fileSlurp",
+			"pprint",
+			"PST",
+			"PDT",
+			"plotLine",
+			"'simLengthUnits':",
+			"drawLineChart",
+			"monetizedPower",
+			"powerTimeSeries",
+			"powGraphParams",
+			"powerMatrix",
+			"powerTimeSeries",
+			"apparentPower",
+			"meterPowerflow",
+			"colorMap",
+			"apparentPower",
+			"regApparentChart",
+			"appPowerParams",
+			"regApparentChart",
+			"appPowerParams",
+			"powerTimeSeries",
+			"drawBarChart",
+			"drawTable",
+			"drawComboChart",
+			"drawLineChart",
+			"drawAreaChart",
+			"areaChart",
+			"Null",
+			"null"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			",",
+			"WA-EPHRATA",
+			"TX-ABILENE",
+			"NY-ITHACA",
+			"ND-STANLEY",
+			"IL-TAYLORVILLE",
+			"HI-KOLOA",
+			"FL-LIVE_OAK",
+			"CO-CARBONDALE",
+			"CA-HALF_MOON_BAY",
+			"CA-BRAWLEY",
+			"AZ-BRAWLEY",
+			"AZ-GLOBE",
+			" ",
+			"fullData",
+			"null",
+			"'\\1':",
+			"\\1:",
+			"",
+			"'",
+			"\"",
+			"***",
+			"'",
+			"\"",
+			"***",
+			"\"thermal_integrity_level\": \"\\1\"",
+			"\"thermal_integrity_level\": \"(\\1)\"",
+			",",
+			"\\n",
+			"power_12 1000;",
+			"length \\10;",
+			"SINGLE_PHASE_CENTER_TAPPED",
+			"constant_power_\\1 10;",
+			"constant_power_\\1 10",
+			"current_limit 9999999.0;",
+			"secondary_voltage 120.0;",
+			"primary_voltage 2400.0;",
+			"geometric_mean_radius 0.031300;",
+			"resistance 0.185900;",
+			"\\1",
+			"\"",
+			":",
+			"'runTime': \\1",
+			"tmyfile climate.tmy2",
+			"name climate",
+			",\\\\\\n",
+			", \\",
+			"MediumSeaGreen",
+			"'",
+			"",
+			"\"",
+			"'",
+			"ZZZ",
+			"\"",
+			"measured_",
+			"'\\1':'\\2',",
+			"'\\1' '\\2'",
+			"'\\1'",
+			"],",
+			"'\\1'",
+			"",
+			"]",
+			"[",
+			"\"",
+			"'",
+			"Z",
+			"analysis.",
+			"\"",
+			"'",
+			"'\\1':'\\2',",
+			"",
+			"}",
+			"\"\\1\"",
+			"",
+			"'\\1':'\\2',",
+			"86400",
+			"'\\1':'\\2',",
+			"",
+			"'\\1':'\\2',",
+			"'\\1':'\\2'",
+			"'\\1' '\\2'",
+			"object \\1",
+			",",
+			"",
+			"\\1",
+			"'\\1':'\\2',",
+			"',",
+			"':'",
+			"'\\1'",
+			"',",
+			",",
+			"':'",
+			"'",
+			"\"object\": \"\\1\"",
+			"\"object\": \\3",
+			"gainsboro",
+			"\"",
+			"omf",
+			" type='radio' class='radio' ",
+			"saveStudy",
+			"newStudy",
+			"\\\\",
+			"d3",
+			"node",
+			"\\n,",
+			"",
+			"'",
+			"../static",
+			"'",
+			"printNestDicts",
+			"libs",
+			"",
+			"toGlmString",
+			"toGraph",
+			"tree",
+			"self.tree",
+			"/feeders",
+			"/json",
+			"anaSpec",
+			"formDict['simLength']",
+			"formDict['feederName']",
+			"formDict['tmy2name']",
+			"formDict['analysisName']",
+			"tmy2name"
+		],
+		"reverse": true,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 453.0
+	},
+	"output.git":
+	{
+		"height": 418.0
+	},
+	"replace":
+	{
+		"height": 182.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"gride",
+				"templates/gridEdit.html"
+			],
+			[
+				"css",
+				"static/omf.css"
+			],
+			[
+				"omf.js",
+				"static/omf.js"
+			],
+			[
+				"grid",
+				"refactor/grid.py"
+			],
+			[
+				"grapher",
+				"doeGrapher.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/C/Users/dwp0/Dropbox/Project Euler/projectEuler.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 284.0,
+	"status_bar_visible": true
+}
