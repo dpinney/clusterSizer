@@ -1,5 +1,26 @@
-<head><script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script></head>
+<head>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<style type="text/css">
+		#input {background-color:red;}
+	</style>
+</head>
 
-<body></body>
-
-<script type="text/javascript"></script>
+<body>
+<div id='input'>
+	<label>simLength (days)</label><input type='text' value='1'/>
+	<label>maxNodesPerUser</label><input type='text' value='1'/>
+	<label>usersPerDay</label><input type='text' value='45'/>
+	<label>computeNodes</label><input type='text' value='10'/>
+	<label>queueDepth</label><input type='text' value='1000000'/>
+	<button>Re-execute</button>
+</div>
+<div id='timeAndArrivalGraph'></div>
+<script>
+	chartOptions = {
+        chart: {renderTo: 'timeAndArrivalGraph'},
+        series: [{name: 'testData', data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}]
+    }
+	new Highcharts.Chart(chartOptions) 
+</script>
+</body>

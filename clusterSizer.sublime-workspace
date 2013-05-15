@@ -243,11 +243,19 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "clusterSizer.html",
+			"settings":
+			{
+				"buffer_size": 871,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 278.0,
+		"height": 185.0,
 		"selected_items":
 		[
 			[
@@ -260,7 +268,7 @@
 			],
 			[
 				"git add",
-				"Git: Add..."
+				"Git: Add Current File"
 			],
 			[
 				"git",
@@ -671,7 +679,7 @@
 				"View: Toggle Open Files in Side Bar"
 			]
 		],
-		"width": 386.0
+		"width": 522.0
 	},
 	"console":
 	{
@@ -688,6 +696,8 @@
 	},
 	"file_history":
 	[
+		"/C/Users/dwp0/Dropbox/OMF/omf/templates/gridEdit.html",
+		"/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 		"/C/Users/dwp0/Dropbox/ClusterSizer/.gitignore",
 		"/C/Users/dwp0/Dropbox/ClusterSizer/main.html",
 		"/C/Users/dwp0/Dropbox/Project Euler/library.py",
@@ -707,7 +717,6 @@
 		"/C/Users/dwp0/Dropbox/OMF/omf/treeParser.py",
 		"/C/Users/dwp0/Dropbox/OMF/omf/schedules.glm",
 		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/000 Schedule Debug/studies/edited/light_schedule.glm",
-		"/C/Users/dwp0/Dropbox/OMF/omf/templates/gridEdit.html",
 		"/C/Users/dwp0/Dropbox/OMF/omf/static/omf.js",
 		"/C/Users/dwp0/Desktop/test.py",
 		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Debug File Houses NR/main.json",
@@ -814,8 +823,7 @@
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecDisembed.py",
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-NEOSYNTH.glm",
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-DISEMB.glm",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecConvert.py",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/dupDebug.py"
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecConvert.py"
 	],
 	"find":
 	{
@@ -856,6 +864,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<br/>",
 			"-",
 			"x",
 			"object waterheater \\{\\n(.|.\\n)*\\}",
@@ -982,8 +991,7 @@
 			"drawLineChart",
 			"drawAreaChart",
 			"areaChart",
-			"Null",
-			"null"
+			"Null"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1125,8 +1133,36 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "clusterSizer.html",
+					"settings":
+					{
+						"buffer_size": 871,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								837,
+								847
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1207,6 +1243,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"omf",
+				"/C/Users/dwp0/Dropbox/OMF/omf/omf.sublime-project"
+			],
 			[
 				"",
 				"/C/Users/dwp0/Dropbox/Project Euler/projectEuler.sublime-project"
