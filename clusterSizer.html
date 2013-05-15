@@ -8,11 +8,11 @@
 
 <body>
 <div id='input'>
-	<label>simLength (days)</label><input type='text' value='1'/>
-	<label>nodesPerUser</label><input type='text' value='1'/>
-	<label>usersPerDay</label><input type='text' value='45'/>
-	<label>computeNodes</label><input type='text' value='10'/>
-	<label>queueDepth</label><input type='text' value='1000000'/>
+	<label>simDays</label><input id='simDays' type='text' value='1'/>
+	<label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/>
+	<label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/>
+	<label>computeNodes</label><input id='computeNodes' type='text' value='10'/>
+	<label>queueDepth</label><input id='queueDepth' type='text' value='1000000'/>
 	<button>Re-execute</button>
 </div>
 <div id='timeAndArrivalGraph'></div>
@@ -28,7 +28,12 @@
 		return Math.floor(Math.random()*(max - min + 1) + min)
 	}
 
-	var probMassFunction = {
+
+	//Start computing results.
+	var nodesPerUser = document.getElementById('nodesPerUser').value
+	var computeNodes = document.getElementById('computeNodes').value
+
+	var arrivalDistribution = {
 		x:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
 		p:[0,0,0,0,0,0,2,5,8,11,12,12,12,12,11,8,5,2,0,0,0,0,0,0],
 		sample:function() {
@@ -45,18 +50,30 @@
 		}
 	}
 
-	for (var i=0;i<30;i++){
-		console.log(probMassFunction.sample())
+	loadSizeDistribution = {
+		x:[],
+		p:[],
+		sample:function() {
+			var sampleList = []
+			for (var i=0;i<this.x.length;i++) {
+				for (var j=0;j<this.p[i];j++) {
+					sampleList.push(this.x[i])
+				}
+			}
+			return randomChoice(sampleList)
+		},
+		toHighchartDesc:function(){
+			//TODO: Implement Me.
+		}
 	}
-
-	arrivalDistribution = {}
-	loadSizeDistribution = {}
 
 	function randomUserGen(numOfUsers) {
 		// List of random user arrivals
 		var userList = []
 		for (var i=0;i<numOfUsers;i++) {
-			randomUser = {GUID:i, arrivalTime:null, loadSize:null, expectedWait:null, actualWait:null}
+			var arrSample = arrivalDistribution.sample()
+			var loadSample = loadSizeDistribution.sample()
+			randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
 			userList.push(randomUser)
 		}
 		return userList
@@ -71,4 +88,18 @@
         series: [{name: 'testData', data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}]
     }
 	new Highcharts.Chart(chartOptions)
+</script>
+
+<script id='TESTS!'>
+	var test = true
+	if (test == true) {
+		// Random sample arrivalDistribution
+		var arrSample = [] 
+		for (var i=0;i<30;i++){
+			arrSample.push(arrivalDistribution.sample())
+		}
+		console.log(arrSample)
+		// Create some users.
+		console.log(randomUserGen(45))
+	}
 </script>
