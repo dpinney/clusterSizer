@@ -2,24 +2,27 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<style type="text/css">
-		div#input {background-color:red;}
+		body {max-width: 1200px;}
+		div.inputBox {background-color:gainsboro;display:inline-block;margin:2px;padding:2px 4px 2px 4px;font-family:sans-serif;}
+		input {width:60px;text-align: center; font-family: sans-serif;}
+		label {margin-left:2px;margin-right:4px;}
 		div.distroGraph {width:49%;height:150px;display:inline-block}
 		div.outputGraph {height:250px}
 	</style>
 </head>
 
 <body>
+<div id='input'>
+	<div class='inputBox'><label>simDays</label><input id='simDays' type='text' value='1'/></div>
+	<div class='inputBox'><label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/></div>
+	<div class='inputBox'><label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/></div>
+	<div class='inputBox'><label>computeNodes</label><input id='computeNodes' type='text' value='10'/></div>
+	<div class='inputBox'><label>queueLimit</label><input id='queueLimit' type='text' value='1000000'/></div>
+	<button onclick='javascript:execute()'>Re-execute</button>
+</div>
 <div id='constants'>
 	<div id='arrivalDistGraph' class='distroGraph'></div>
 	<div id='loadDistGraph' class='distroGraph'></div>
-</div>
-<div id='input'>
-	<label>simDays</label><input id='simDays' type='text' value='1'/>
-	<label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/>
-	<label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/>
-	<label>computeNodes</label><input id='computeNodes' type='text' value='10'/>
-	<label>queueDepth</label><input id='queueDepth' type='text' value='1000000'/>
-	<button onclick='javascript:execute()'>Re-execute</button>
 </div>
 <div id='output'>
 	<div id='arrivalData' class='outputGraph'></div>
