@@ -15,8 +15,6 @@
 	<label>queueDepth</label><input id='queueDepth' type='text' value='1000000'/>
 	<button onclick='javascript:execute()'>Re-execute</button>
 </div>
-
-<div id='timeAndArrivalGraph'></div>
 </body>
 
 <script>
@@ -36,6 +34,8 @@
 		return randomChoice(sampleList)
 	}
 	ProbMass.prototype.toHighChartDesc = function(renderPlace) {
+		// TODO: make this more like the linked picture.
+		// http://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Discrete_probability_distrib.svg/200px-Discrete_probability_distrib.svg.png
 		var chartOptions = {
 			series: [{name: 'Event Count', data: this.eventPairs}],
 			chart: {renderTo: renderPlace, type: 'column'},
@@ -51,29 +51,49 @@
 		//Pull in variables from the document.
 		var nodesPerUser = document.getElementById('nodesPerUser').value
 		var computeNodes = document.getElementById('computeNodes').value
+		var usersPerDay = document.getElementById('usersPerDay').value
 
 		// Initialize our probability mass funtions for arrivals and load sizes.
 		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
 		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
 
+		// Generating Users
 		function randomUserGen(numOfUsers) {
-			// List of random user arrivals
 			var userList = []
 			for (var i=0;i<numOfUsers;i++) {
 				var arrSample = arrivalDistribution.sample()
 				var loadSample = loadSizeDistribution.sample()
-				randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
+				var randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
 				userList.push(randomUser)
 			}
 			return userList
 		}
+		randomUsers = randomUserGen(usersPerDay)
 
-		// Generating Users, Drawing the Arrivals
-		// var chartOptions = {
-		// 	chart: {renderTo: 'timeAndArrivalGraph'},
-		// 	series: [{name: 'testData', data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}]
-		// }
-		// new Highcharts.Chart(chartOptions)
+		// Drawing the Arrivals
+		arrivalCounts = []
+		loadTotals = []
+		for (var i=0;i<24;i++) {
+			arrivalCounts[i] = 0
+			loadTotals[i] = 0
+			for (j=0;j<randomUsers.length;j++) {
+				if (randomUsers[j]['arrivalTime'] == i) {
+					arrivalCounts[i] += 1
+					loadTotals[i] += randomUsers[j]['loadSize'] - 1
+				}
+			}
+		}
+		var arrivalChartOptions = {
+			series: [{name:'Excess Load', data:loadTotals},{name: 'Arrivals', data: arrivalCounts}],
+			chart: {renderTo: 'arrivalData', type: 'column'},
+			plotOptions: {column:{stacking: 'normal'}},
+			yAxis: {stackLabels: {enabled: true}},
+			title: {text: 'Arrival Data'},
+			legend: {enabled: false},
+			credits: {enabled: false}
+		}
+		$('<div>').attr('id','arrivalData').appendTo('body')
+		new Highcharts.Chart(arrivalChartOptions)
 
 		// TESTS!!!!
 		var test = true
