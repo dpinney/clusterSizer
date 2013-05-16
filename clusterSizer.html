@@ -13,93 +13,87 @@
 	<label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/>
 	<label>computeNodes</label><input id='computeNodes' type='text' value='10'/>
 	<label>queueDepth</label><input id='queueDepth' type='text' value='1000000'/>
-	<button>Re-execute</button>
+	<button onclick='javascript:execute()'>Re-execute</button>
 </div>
+
 <div id='timeAndArrivalGraph'></div>
 </body>
 
 <script>
-	// Function library.
-	function randomChoice(inList) {
-		return inList[Math.floor(Math.random() * inList.length)]
+	// Probability Mass Function Object
+	function ProbMass(eventPairs) {
+		this.eventPairs = eventPairs
 	}
-
-	function randomInt(min,max) {
-		return Math.floor(Math.random()*(max - min + 1) + min)
-	}
-
-
-	//Start computing results.
-	var nodesPerUser = document.getElementById('nodesPerUser').value
-	var computeNodes = document.getElementById('computeNodes').value
-
-	var arrivalDistribution = {
-		x:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-		p:[0,0,0,0,0,0,2,5,8,11,12,12,12,12,11,8,5,2,0,0,0,0,0,0],
-		sample:function() {
-			var sampleList = []
-			for (var i=0;i<this.x.length;i++) {
-				for (var j=0;j<this.p[i];j++) {
-					sampleList.push(this.x[i])
-				}
+	ProbMass.prototype.sample = function() {
+		// Todo: optimize this horrendous sampling code.
+		function randomChoice(inList) {return inList[Math.floor(Math.random() * inList.length)]}
+		var sampleList = []
+		for (var i=0;i<this.eventPairs.length;i++) {
+			for (var j=0;j<this.eventPairs[i][1];j++) {
+				sampleList.push(this.eventPairs[i][0])
 			}
-			return randomChoice(sampleList)
-		},
-		toHighchartDesc:function(){
-			//TODO: Implement Me.
 		}
+		return randomChoice(sampleList)
+	}
+	ProbMass.prototype.toHighChartDesc = function(renderPlace) {
+		var chartOptions = {
+			series: [{name: 'Event Count', data: this.eventPairs}],
+			chart: {renderTo: renderPlace, type: 'column'},
+			title: {text: renderPlace},
+			legend: {enabled: false},
+			credits: {enabled: false}
+		}
+		return chartOptions
 	}
 
-	loadSizeDistribution = {
-		x:[],
-		p:[],
-		sample:function() {
-			var sampleList = []
-			for (var i=0;i<this.x.length;i++) {
-				for (var j=0;j<this.p[i];j++) {
-					sampleList.push(this.x[i])
-				}
+	// Function that does all calculation.
+	function execute() {
+		//Pull in variables from the document.
+		var nodesPerUser = document.getElementById('nodesPerUser').value
+		var computeNodes = document.getElementById('computeNodes').value
+
+		// Initialize our probability mass funtions for arrivals and load sizes.
+		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
+		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
+
+		function randomUserGen(numOfUsers) {
+			// List of random user arrivals
+			var userList = []
+			for (var i=0;i<numOfUsers;i++) {
+				var arrSample = arrivalDistribution.sample()
+				var loadSample = loadSizeDistribution.sample()
+				randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
+				userList.push(randomUser)
 			}
-			return randomChoice(sampleList)
-		},
-		toHighchartDesc:function(){
-			//TODO: Implement Me.
+			return userList
+		}
+
+		// Generating Users, Drawing the Arrivals
+		// var chartOptions = {
+		// 	chart: {renderTo: 'timeAndArrivalGraph'},
+		// 	series: [{name: 'testData', data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}]
+		// }
+		// new Highcharts.Chart(chartOptions)
+
+		// TESTS!!!!
+		var test = true
+		if (test == true) {
+			// Random sample arrivalDistribution
+			var arrSample = [] 
+			for (var i=0;i<30;i++){
+				arrSample.push(arrivalDistribution.sample())
+			}
+			console.log(arrSample)
+			// Draw the distributions
+			$('<div>').attr('id','arrivalDistGraph').appendTo('body')
+			new Highcharts.Chart(arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
+			$('<div>').attr('id','loadDistGraph').appendTo('body')
+			new Highcharts.Chart(loadSizeDistribution.toHighChartDesc('loadDistGraph'))		
+			// Create some users.
+			console.log(randomUserGen(45))
 		}
 	}
-
-	function randomUserGen(numOfUsers) {
-		// List of random user arrivals
-		var userList = []
-		for (var i=0;i<numOfUsers;i++) {
-			var arrSample = arrivalDistribution.sample()
-			var loadSample = loadSizeDistribution.sample()
-			randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
-			userList.push(randomUser)
-		}
-		return userList
-	}
-
-	// Recipe: generate a list of random user arrivals and load sizes. Graph em.
-	// Then go through, hour by hour, and do the load balancing algorithm.
-
-	// Drawing the results.
-	var chartOptions = {
-        chart: {renderTo: 'timeAndArrivalGraph'},
-        series: [{name: 'testData', data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]}]
-    }
-	new Highcharts.Chart(chartOptions)
-</script>
-
-<script id='TESTS!'>
-	var test = true
-	if (test == true) {
-		// Random sample arrivalDistribution
-		var arrSample = [] 
-		for (var i=0;i<30;i++){
-			arrSample.push(arrivalDistribution.sample())
-		}
-		console.log(arrSample)
-		// Create some users.
-		console.log(randomUserGen(45))
-	}
+	
+	// Run calculations on load.
+	execute()
 </script>

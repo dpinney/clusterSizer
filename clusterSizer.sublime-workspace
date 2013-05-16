@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"comput",
+				"computeNodes"
+			],
+			[
 				"scr",
 				"script	Tag"
 			],
@@ -247,7 +251,15 @@
 			"file": "clusterSizer.html",
 			"settings":
 			{
-				"buffer_size": 871,
+				"buffer_size": 2961,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 244,
 				"line_ending": "Windows"
 			}
 		}
@@ -255,9 +267,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 185.0,
+		"height": 60.0,
 		"selected_items":
 		[
+			[
+				"pro close",
+				"Project: Close"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
 			[
 				"git push",
 				"Git: Push"
@@ -267,8 +287,12 @@
 				"Git: Commit"
 			],
 			[
-				"git add",
-				"Git: Add Current File"
+				"browser",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
 			],
 			[
 				"git",
@@ -281,10 +305,6 @@
 			[
 				"project",
 				"Project: Close"
-			],
-			[
-				"browser",
-				"File: Open In Browser - Testing Server"
 			],
 			[
 				"wrap",
@@ -313,10 +333,6 @@
 			[
 				"repl",
 				"SublimeREPL: Python"
-			],
-			[
-				"tabs",
-				"Indentation: Convert to Tabs"
 			],
 			[
 				"reind",
@@ -696,6 +712,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/dwp0/Desktop/jstat-1.0.0.js",
 		"/C/Users/dwp0/Dropbox/OMF/omf/templates/gridEdit.html",
 		"/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 		"/C/Users/dwp0/Dropbox/ClusterSizer/.gitignore",
@@ -822,8 +839,7 @@
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/houses.glm",
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecDisembed.py",
 		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-NEOSYNTH.glm",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-DISEMB.glm",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/acecConvert.py"
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/acec/ACEC-Friendship-DISEMB.glm"
 	],
 	"find":
 	{
@@ -864,6 +880,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			",	",
+			"0(\\d)",
+			",",
+			"-",
+			"mass",
+			"            ",
+			"{\n",
 			"<br/>",
 			"-",
 			"x",
@@ -984,14 +1007,7 @@
 			"appPowerParams",
 			"regApparentChart",
 			"appPowerParams",
-			"powerTimeSeries",
-			"drawBarChart",
-			"drawTable",
-			"drawComboChart",
-			"drawLineChart",
-			"drawAreaChart",
-			"areaChart",
-			"Null"
+			"powerTimeSeries"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -999,6 +1015,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"\\1",
 			",",
 			"WA-EPHRATA",
 			"TX-ABILENE",
@@ -1141,21 +1158,47 @@
 					"file": "clusterSizer.html",
 					"settings":
 					{
-						"buffer_size": 871,
+						"buffer_size": 2961,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								837,
-								847
+								2237,
+								2237
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 588.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 244,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								244,
+								244
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
