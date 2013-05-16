@@ -2,11 +2,17 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
 	<style type="text/css">
-		#input {background-color:red;}
+		div#input {background-color:red;}
+		div.distroGraph {width:49%;height:150px;display:inline-block}
+		div.outputGraph {height:250px}
 	</style>
 </head>
 
 <body>
+<div id='constants'>
+	<div id='arrivalDistGraph' class='distroGraph'></div>
+	<div id='loadDistGraph' class='distroGraph'></div>
+</div>
 <div id='input'>
 	<label>simDays</label><input id='simDays' type='text' value='1'/>
 	<label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/>
@@ -15,12 +21,18 @@
 	<label>queueDepth</label><input id='queueDepth' type='text' value='1000000'/>
 	<button onclick='javascript:execute()'>Re-execute</button>
 </div>
+<div id='output'>
+	<div id='arrivalData' class='outputGraph'></div>
+	<div id='workAndQueue' class='outputGraph'></div>
+</div>
+
 </body>
 
 <script>
 	// Probability Mass Function Object
 	function ProbMass(eventPairs) {
 		this.eventPairs = eventPairs
+		// Todo: normalize?
 	}
 	ProbMass.prototype.sample = function() {
 		// Todo: optimize this horrendous sampling code.
@@ -49,13 +61,17 @@
 	// Function that does all calculation.
 	function execute() {
 		//Pull in variables from the document.
-		var nodesPerUser = document.getElementById('nodesPerUser').value
-		var computeNodes = document.getElementById('computeNodes').value
-		var usersPerDay = document.getElementById('usersPerDay').value
+		var nodesPerUser = Number(document.getElementById('nodesPerUser').value)
+		var computeNodes = Number(document.getElementById('computeNodes').value)
+		var usersPerDay = Number(document.getElementById('usersPerDay').value)
+		var simDays = Number(document.getElementById('simDays').value)
 
 		// Initialize our probability mass funtions for arrivals and load sizes.
 		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
 		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
+		// Draw the distributions:
+		new Highcharts.Chart(arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
+		new Highcharts.Chart(loadSizeDistribution.toHighChartDesc('loadDistGraph'))
 
 		// Generating Users
 		function randomUserGen(numOfUsers) {
@@ -73,45 +89,50 @@
 		// Drawing the Arrivals
 		arrivalCounts = []
 		loadTotals = []
-		for (var i=0;i<24;i++) {
-			arrivalCounts[i] = 0
-			loadTotals[i] = 0
+		for (var i=0;i<24*simDays;i++) {
+			arrivalCounts[i] = null
+			loadTotals[i] = null
 			for (j=0;j<randomUsers.length;j++) {
 				if (randomUsers[j]['arrivalTime'] == i) {
 					arrivalCounts[i] += 1
-					loadTotals[i] += randomUsers[j]['loadSize'] - 1
+					loadTotals[i] += randomUsers[j]['loadSize']
 				}
 			}
 		}
 		var arrivalChartOptions = {
-			series: [{name:'Excess Load', data:loadTotals},{name: 'Arrivals', data: arrivalCounts}],
-			chart: {renderTo: 'arrivalData', type: 'column'},
+			series: [{name: 'Arrivals', type:'column', data: arrivalCounts},{name:'Total Load Addition', type:'line', data:loadTotals}],
+			chart: {renderTo: 'arrivalData'},
 			plotOptions: {column:{stacking: 'normal'}},
-			yAxis: {stackLabels: {enabled: true}},
 			title: {text: 'Arrival Data'},
 			legend: {enabled: false},
-			credits: {enabled: false}
+			credits: {enabled: false},
+			yAxis: {title:{text:null}, endOntick:false}
 		}
-		$('<div>').attr('id','arrivalData').appendTo('body')
+		$('<div>').attr('id','arrivalData').attr('style','height:400px').appendTo('#output')
 		new Highcharts.Chart(arrivalChartOptions)
 
-		// TESTS!!!!
-		var test = true
-		if (test == true) {
-			// Random sample arrivalDistribution
-			var arrSample = [] 
-			for (var i=0;i<30;i++){
-				arrSample.push(arrivalDistribution.sample())
-			}
-			console.log(arrSample)
-			// Draw the distributions
-			$('<div>').attr('id','arrivalDistGraph').appendTo('body')
-			new Highcharts.Chart(arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
-			$('<div>').attr('id','loadDistGraph').appendTo('body')
-			new Highcharts.Chart(loadSizeDistribution.toHighChartDesc('loadDistGraph'))		
-			// Create some users.
-			console.log(randomUserGen(45))
+		// Drawing the nodes working and queue:
+		nodesWorking = []
+		queueSize = []
+		for (var i=0;i<24*simDays;i++) {
+			// Pull the new loads and past queue into the current queue.
+			if (i>0) {queueSize[i] = queueSize[i-1] + loadTotals[i]}
+			else {queueSize[i] = loadTotals[i]}
+			// Set as many nodes working as possible.
+			nodesWorking[i] = Math.min(queueSize[i], computeNodes)
+			// Take current work we're doing off the queue.
+			queueSize[i] = queueSize[i] - nodesWorking[i]
 		}
+		var workAndQueue = {
+			series: [{name: 'Nodes Working', type:'column', data: nodesWorking},{name:'queueSize', type:'column', data:queueSize.map(function(x){return -1*x})}],
+			chart: {renderTo: 'workAndQueue'},
+			plotOptions: {column:{stacking: 'normal'}},
+			title: {text: 'Nodes Working and Queue'},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			yAxis: {title:{text:null},max:1.1*computeNodes, endOntick:false}
+		}
+		new Highcharts.Chart(workAndQueue)
 	}
 	
 	// Run calculations on load.
