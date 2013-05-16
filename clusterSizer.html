@@ -26,6 +26,7 @@
 <div id='output'>
 	<div id='arrivalData' class='outputGraph'></div>
 	<div id='workAndQueue' class='outputGraph'></div>
+	<div id='waitTimeMultipliers' class='outputGraph'></div>
 </div>
 
 </body>
@@ -55,7 +56,8 @@
 			chart: {renderTo: renderPlace, type: 'column'},
 			title: {text: renderPlace},
 			legend: {enabled: false},
-			credits: {enabled: false}
+			credits: {enabled: false},
+			yAxis: {title:{text:null}, endOntick:false}
 		}
 		return chartOptions
 	}
@@ -95,6 +97,7 @@
 			}
 			return userList
 		}
+		//TODO: compensate for weekends?
 		randomUsers = randomUserGen(usersPerDay*simDays)
 
 		// Drawing the Arrivals
@@ -143,6 +146,30 @@
 			yAxis: {title:{text:null}, endOntick:false}
 		}
 		new Highcharts.Chart(workAndQueueChartOptions)
+
+		// Figuring out wait times.
+		for (var i=0;i<24*simDays;i++) {
+			if (i==0) {hoursQueue = 0}
+			else {hoursQueue = queueSize[i-1]}
+			runningThisHour = randomUsers.filter(function(x){return x.arrivalTime==i})
+			for (user in runningThisHour) {
+				runningThisHour[user].actualWait = Math.floor(hoursQueue/computeNodes)+runningThisHour[user].loadSize/nodesPerUser
+				hoursQueue += runningThisHour[user].loadSize/nodesPerUser
+			}
+		}
+		waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
+		function average(inArray) {var total=0;for(var i=0;i<inArray.length;i++){total+=inArray[i]};return total/inArray.length}
+		var waitTimeChartOptions = {
+			series: [{name: 'Wait Multiplier', type:'bar', data: waitTimes}],
+			chart: {renderTo: 'waitTimeMultipliers'},
+			plotOptions: {column:{stacking: 'normal'}},
+			title: {text: 'Wait Time (Multiples of Job Size)'},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			yAxis: {title:{text:null}, endOntick:false, plotLines:[{value:average(waitTimes),color:'#000080',width:2,zIndex:9,label:{text:'Average: ' + average(waitTimes).toPrecision(3)}}]}
+		}
+		new Highcharts.Chart(waitTimeChartOptions)
+
 	}
 	
 	// Run calculations on load.
