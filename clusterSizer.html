@@ -52,7 +52,7 @@
 		// TODO: make this more like the linked picture.
 		// http://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Discrete_probability_distrib.svg/200px-Discrete_probability_distrib.svg.png
 		var chartOptions = {
-			series: [{name: 'Event Count', data: this.eventPairs}],
+			series: [{name: 'Event Count', data: this.eventPairs, color:'gray'}],
 			chart: {renderTo: renderPlace, type: 'column'},
 			title: {text: renderPlace},
 			legend: {enabled: false},
@@ -120,7 +120,7 @@
 			title: {text: 'Arrival Data'},
 			legend: {enabled: false},
 			credits: {enabled: false},
-			yAxis: {title:{text:null}, endOntick:false}
+			yAxis: {title:{text:null}}
 		}
 		new Highcharts.Chart(arrivalChartOptions)
 
@@ -143,7 +143,7 @@
 			title: {text: 'Nodes Working and Queue'},
 			legend: {enabled: false},
 			credits: {enabled: false},
-			yAxis: {title:{text:null}, endOntick:false}
+			yAxis: {title:{text:null}}
 		}
 		new Highcharts.Chart(workAndQueueChartOptions)
 
@@ -166,7 +166,7 @@
 			title: {text: 'Wait Time (Multiples of Job Size)'},
 			legend: {enabled: false},
 			credits: {enabled: false},
-			yAxis: {title:{text:null}, endOntick:false, plotLines:[{value:average(waitTimes),color:'#000080',width:2,zIndex:9,label:{text:'Average: ' + average(waitTimes).toPrecision(3)}}]}
+			yAxis: {title:{text:null}, plotLines:[{value:average(waitTimes),color:'#000080',width:2,zIndex:9,label:{text:'Average: ' + average(waitTimes).toPrecision(3)}}]}
 		}
 		new Highcharts.Chart(waitTimeChartOptions)
 
