@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"que",
+				"queueSize"
+			],
+			[
 				"comput",
 				"computeNodes"
 			],
@@ -251,8 +255,19 @@
 			"file": "clusterSizer.html",
 			"settings":
 			{
-				"buffer_size": 2961,
+				"buffer_size": 5302,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Python 2.7.3 (default, Apr 10 2012, 23:31:26) [MSC v.1500 32 bit (Intel)] on win32\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n>>> zip([1,2,3,4,5,6,7,8,9],[50,25,12,6,3,1,1,1,1])\n[(1, 50), (2, 25), (3, 12), (4, 6), (5, 3), (6, 1), (7, 1), (8, 1), (9, 1)]\n>>> map(lambda x:return [x[0],x[1]],zip([1,2,3,4,5,6,7,8,9],[50,25,12,6,3,1,1,1,1]))\n  File \"<stdin>\", line 1\n    map(lambda x:return [x[0],x[1]],zip([1,2,3,4,5,6,7,8,9],[50,25,12,6,3,1,1,1,1]))\n                      ^\nSyntaxError: invalid syntax\n>>> map(lambda x:[x[0],x[1]],zip([1,2,3,4,5,6,7,8,9],[50,25,12,6,3,1,1,1,1]))\n[[1, 50], [2, 25], [3, 12], [4, 6], [5, 3], [6, 1], [7, 1], [8, 1], [9, 1]]\n>>> ",
+			"settings":
+			{
+				"buffer_size": 693,
+				"line_ending": "Windows",
+				"name": "*REPL* [python]",
+				"read_only": true,
+				"scratch": true
 			}
 		},
 		{
@@ -267,32 +282,36 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 60.0,
+		"height": 375.0,
 		"selected_items":
 		[
 			[
-				"pro close",
-				"Project: Close"
-			],
-			[
 				"git add",
-				"Git: Add..."
-			],
-			[
-				"git push",
-				"Git: Push"
+				"Git: Add Current File"
 			],
 			[
 				"git commit",
 				"Git: Commit"
 			],
 			[
-				"browser",
-				"File: Open In Browser - Testing Server"
+				"git push",
+				"Git: Push"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python"
 			],
 			[
 				"tabs",
 				"Indentation: Convert to Tabs"
+			],
+			[
+				"pro close",
+				"Project: Close"
+			],
+			[
+				"browser",
+				"File: Open In Browser - Testing Server"
 			],
 			[
 				"git",
@@ -329,10 +348,6 @@
 			[
 				"convert tabs",
 				"Indentation: Convert to Tabs"
-			],
-			[
-				"repl",
-				"SublimeREPL: Python"
 			],
 			[
 				"reind",
@@ -880,6 +895,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"24",
+			"arrivalChartOptions",
+			"loadCounts",
+			"computeNodes",
+			" ",
+			")",
+			"(",
+			"0(\\d)",
+			"-",
 			",	",
 			"0(\\d)",
 			",",
@@ -998,15 +1022,6 @@
 			"powerTimeSeries",
 			"powGraphParams",
 			"powerMatrix",
-			"powerTimeSeries",
-			"apparentPower",
-			"meterPowerflow",
-			"colorMap",
-			"apparentPower",
-			"regApparentChart",
-			"appPowerParams",
-			"regApparentChart",
-			"appPowerParams",
 			"powerTimeSeries"
 		],
 		"highlight": true,
@@ -1158,15 +1173,15 @@
 					"file": "clusterSizer.html",
 					"settings":
 					{
-						"buffer_size": 2961,
+						"buffer_size": 5302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2237,
-								2237
+								4287,
+								4287
 							]
 						],
 						"settings":
@@ -1175,13 +1190,50 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 588.0,
+						"translation.y": 1003.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 693,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								688,
+								613
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"auto_indent": false,
+							"detect_indentation": false,
+							"gutter": false,
+							"history_arrows": true,
+							"indent_subsequent_lines": false,
+							"line_numbers": false,
+							"repl": true,
+							"repl_external_id": "python",
+							"repl_id": "b27127e9ed7544b58f2e23138fe631fa",
+							"smart_indent": false,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "README.md",
 					"settings":
 					{

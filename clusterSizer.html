@@ -17,7 +17,6 @@
 	<div class='inputBox'><label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/></div>
 	<div class='inputBox'><label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/></div>
 	<div class='inputBox'><label>computeNodes</label><input id='computeNodes' type='text' value='10'/></div>
-	<div class='inputBox'><label>queueLimit</label><input id='queueLimit' type='text' value='1000000'/></div>
 	<button onclick='javascript:execute()'>Re-execute</button>
 </div>
 <div id='constants'>
@@ -35,7 +34,7 @@
 	// Probability Mass Function Object
 	function ProbMass(eventPairs) {
 		this.eventPairs = eventPairs
-		// Todo: normalize?
+		// Todo: normalize on object creation or on graphing?
 	}
 	ProbMass.prototype.sample = function() {
 		// Todo: optimize this horrendous sampling code.
@@ -71,6 +70,14 @@
 
 		// Initialize our probability mass funtions for arrivals and load sizes.
 		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
+		dayEvents = []
+		for (var i=0;i<simDays;i++) {
+			// Weekend:
+			if (i%7==5||i%7==6) {dayEvents.push([i,1])}
+			// Weekday:
+			else {dayEvents.push([i,10])}
+		}
+		dayDistribution = new ProbMass(dayEvents)
 		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
 		// Draw the distributions:
 		new Highcharts.Chart(arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
@@ -80,14 +87,15 @@
 		function randomUserGen(numOfUsers) {
 			var userList = []
 			for (var i=0;i<numOfUsers;i++) {
+				var daySample = dayDistribution.sample()
 				var arrSample = arrivalDistribution.sample()
 				var loadSample = loadSizeDistribution.sample()
-				var randomUser = {GUID:i, arrivalTime:arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
+				var randomUser = {GUID:i, arrivalTime:daySample*24+arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
 				userList.push(randomUser)
 			}
 			return userList
 		}
-		randomUsers = randomUserGen(usersPerDay)
+		randomUsers = randomUserGen(usersPerDay*simDays)
 
 		// Drawing the Arrivals
 		arrivalCounts = []
@@ -126,16 +134,16 @@
 			// Take current work we're doing off the queue.
 			queueSize[i] = queueSize[i] - nodesWorking[i]
 		}
-		var workAndQueue = {
+		var workAndQueueChartOptions = {
 			series: [{name: 'Nodes Working', type:'column', data: nodesWorking},{name:'queueSize', type:'column', data:queueSize.map(function(x){return -1*x})}],
 			chart: {renderTo: 'workAndQueue'},
 			plotOptions: {column:{stacking: 'normal'}},
 			title: {text: 'Nodes Working and Queue'},
 			legend: {enabled: false},
 			credits: {enabled: false},
-			yAxis: {title:{text:null},max:1.1*computeNodes, endOntick:false}
+			yAxis: {title:{text:null}, endOntick:false}
 		}
-		new Highcharts.Chart(workAndQueue)
+		new Highcharts.Chart(workAndQueueChartOptions)
 	}
 	
 	// Run calculations on load.
