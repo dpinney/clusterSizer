@@ -1,6 +1,7 @@
 <head>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
 	<style type="text/css">
 		body {max-width: 1200px;}
 		div.inputBox {background-color:gainsboro;display:inline-block;margin:2px;padding:2px 4px 2px 4px;font-family:sans-serif;}
@@ -28,15 +29,22 @@
 	<div id='workAndQueue' class='outputGraph'></div>
 	<div id='waitTimeMultipliers' class='outputGraph'></div>
 </div>
-
+<div id='gridBubbles'></div>
 </body>
 
 <script>
+	// Random utility functions.
+	function sum(inArray) {return inArray.reduce(function(x,y){return x+y})}
+	function average(inArray) {return sum(inArray)/inArray.length}
+	function min(inArray) {return Math.min.apply(null, inArray)}
+	function max(inArray) {return Math.max.apply(null, inArray)}
+
 	// Probability Mass Function Object
 	function ProbMass(eventPairs) {
 		this.eventPairs = eventPairs
 		// Todo: normalize on object creation or on graphing?
 	}
+
 	ProbMass.prototype.sample = function() {
 		// Todo: optimize this horrendous sampling code.
 		function randomChoice(inList) {return inList[Math.floor(Math.random() * inList.length)]}
@@ -48,6 +56,7 @@
 		}
 		return randomChoice(sampleList)
 	}
+
 	ProbMass.prototype.toHighChartDesc = function(renderPlace) {
 		// TODO: make this more like the linked picture.
 		// http://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Discrete_probability_distrib.svg/200px-Discrete_probability_distrib.svg.png
@@ -158,7 +167,6 @@
 			}
 		}
 		waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
-		function average(inArray) {var total=0;for(var i=0;i<inArray.length;i++){total+=inArray[i]};return total/inArray.length}
 		var waitTimeChartOptions = {
 			series: [{name: 'Wait Multiplier', type:'bar', data: waitTimes}],
 			chart: {renderTo: 'waitTimeMultipliers'},
@@ -169,9 +177,106 @@
 			yAxis: {title:{text:null}, plotLines:[{value:average(waitTimes),color:'#0d233a',width:2,zIndex:9,label:{text:'Average: ' + average(waitTimes).toPrecision(3)}}]}
 		}
 		new Highcharts.Chart(waitTimeChartOptions)
-
 	}
 	
+	function singleRun(simDays, usersPerDay, nodesPerUser, computeNodes) {
+		// Initialize our probability mass funtions for arrivals and load sizes.
+		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
+		dayEvents = []
+		for (var i=0;i<simDays;i++) {
+			// Weekend:
+			if (i%7==5||i%7==6) {dayEvents.push([i,1])}
+			// Weekday:
+			else {dayEvents.push([i,10])}
+		}
+		var dayDistribution = new ProbMass(dayEvents)
+		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
+
+		// Generating Users
+		function randomUserGen(numOfUsers) {
+			var userList = []
+			for (var i=0;i<numOfUsers;i++) {
+				var daySample = dayDistribution.sample()
+				var arrSample = arrivalDistribution.sample()
+				var loadSample = loadSizeDistribution.sample()
+				var randomUser = {GUID:i, arrivalTime:daySample*24+arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
+				userList.push(randomUser)
+			}
+			return userList
+		}
+		//TODO: compensate for weekends?
+		randomUsers = randomUserGen(usersPerDay*simDays)
+
+		// Arrivals
+		arrivalCounts = []
+		loadTotals = []
+		for (var i=0;i<24*simDays;i++) {
+			arrivalCounts[i] = null
+			loadTotals[i] = null
+			for (j=0;j<randomUsers.length;j++) {
+				if (randomUsers[j]['arrivalTime'] == i) {
+					arrivalCounts[i] += 1
+					loadTotals[i] += randomUsers[j]['loadSize']
+				}
+			}
+		}
+
+		// Drawing the nodes working and queue:
+		nodesWorking = []
+		queueSize = []
+		for (var i=0;i<24*simDays;i++) {
+			// Pull the new loads and past queue into the current queue.
+			if (i>0) {queueSize[i] = queueSize[i-1] + loadTotals[i]}
+			else {queueSize[i] = loadTotals[i]}
+			// Set as many nodes working as possible.
+			nodesWorking[i] = Math.min(queueSize[i], computeNodes)
+			// Take current work we're doing off the queue.
+			queueSize[i] = queueSize[i] - nodesWorking[i]
+		}
+
+		// Figuring out wait times.
+		for (var i=0;i<24*simDays;i++) {
+			if (i==0) {hoursQueue = 0}
+			else {hoursQueue = queueSize[i-1]}
+			runningThisHour = randomUsers.filter(function(x){return x.arrivalTime==i})
+			for (user in runningThisHour) {
+				runningThisHour[user].actualWait = Math.floor(hoursQueue/computeNodes)+runningThisHour[user].loadSize/nodesPerUser
+				hoursQueue += runningThisHour[user].loadSize/nodesPerUser
+			}
+		}
+		waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
+		return {maxQueueSize:max(queueSize),averageWaitMultiple:average(waitTimes)}
+	}
+
+	function gridCompute(simDays, usersPerDayMin, usersPerDayStep, usersPerDayMax, nodesPerUser, computeNodesMin, computeNodesStep, computeNodesMax) {
+		var outputArray = []
+		for (var usersVar=usersPerDayMin;usersVar<=usersPerDayMax;usersVar+=usersPerDayStep) {
+			for (var nodesVar=computeNodesMin;nodesVar<=computeNodesMax;nodesVar+=computeNodesStep) {
+				var runResults = singleRun(simDays, usersVar, nodesPerUser, nodesVar)
+				outputArray.push({users:usersVar,nodes:nodesVar,maxQueueSize:runResults.maxQueueSize,averageWaitMultiple:runResults.averageWaitMultiple})
+			}
+		}
+		return outputArray
+	}
+
 	// Run calculations on load.
 	execute()
+
+	// Run a bubble test.
+	var bubbleOutput = gridCompute(5, 30,10,200, 1, 10,2,20 )
+	// Graph a bubbleCarlo.
+	bubbleGraphData=[]
+	for (var indy in bubbleOutput) {
+		bubbleGraphData.push([bubbleOutput[indy].users, bubbleOutput[indy].nodes, bubbleOutput[indy].averageWaitMultiple])
+	}
+	var bubbleChartOptions = {
+		series: [{name: '(usersPerDay, computeNodes)', data: bubbleGraphData}],
+		chart: {renderTo: 'gridBubbles', type:'bubble'},
+		title: {text: 'Scaling with Users and Nodes'},
+		legend: {enabled: false},
+		credits: {enabled: false},
+		xAxis: {title:{text:'usersPerDay'}},
+		yAxis: {title:{text:'computeNodes'}}
+	}
+	new Highcharts.Chart(bubbleChartOptions)
 </script>
