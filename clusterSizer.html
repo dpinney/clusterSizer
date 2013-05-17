@@ -18,7 +18,7 @@
 	<div class='inputBox'><label>nodesPerUser</label><input id='nodesPerUser' type='text' value='1'/></div>
 	<div class='inputBox'><label>usersPerDay</label><input id='usersPerDay' type='text' value='45'/></div>
 	<div class='inputBox'><label>computeNodes</label><input id='computeNodes' type='text' value='10'/></div>
-	<button onclick='javascript:execute()'>Re-execute</button>
+	<button onclick='javascript:graphSingle()'>Re-execute</button>
 </div>
 <div id='constants'>
 	<div id='arrivalDistGraph' class='distroGraph'></div>
@@ -29,11 +29,22 @@
 	<div id='workAndQueue' class='outputGraph'></div>
 	<div id='waitTimeMultipliers' class='outputGraph'></div>
 </div>
+<div id='gridInput'>
+	<div class='inputBox'><label>simDays</label><input id='gridSimDays' type='text' value='5'/></div>
+	<div class='inputBox'><label>usersPerDayMin</label><input id='gridUsersPerDayMin' type='text' value='30'/></div>
+	<div class='inputBox'><label>usersPerDayStepSize</label><input id='usersPerDayStepSize' type='text' value='10'/></div>
+	<div class='inputBox'><label>usersPerDayMax</label><input id='gridUsersPerDayMax' type='text' value='200'/></div>
+	<div class='inputBox'><label>nodesPerUser</label><input id='gridNodesPerUser' type='text' value='1'/></div>
+	<div class='inputBox'><label>computeNodesMin</label><input id='gridComputeNodesMin' type='text' value='10'/></div>
+	<div class='inputBox'><label>computeNodesStepSize</label><input id='computeNodesStepSize' type='text' value='2'/></div>
+	<div class='inputBox'><label>computeNodesMax</label><input id='gridComputeNodesMax' type='text' value='20'/></div>
+	<button onclick='javascript:graphGrid()'>Re-execute</button>
+</div>
 <div id='gridBubbles'></div>
 </body>
 
 <script>
-	// Random utility functions.
+	// Array functions.
 	function sum(inArray) {return inArray.reduce(function(x,y){return x+y})}
 	function average(inArray) {return sum(inArray)/inArray.length}
 	function min(inArray) {return Math.min.apply(null, inArray)}
@@ -71,118 +82,11 @@
 		return chartOptions
 	}
 
-	// Function that does all calculation.
-	function execute() {
-		//Pull in variables from the document.
-		var nodesPerUser = Number(document.getElementById('nodesPerUser').value)
-		var computeNodes = Number(document.getElementById('computeNodes').value)
-		var usersPerDay = Number(document.getElementById('usersPerDay').value)
-		var simDays = Number(document.getElementById('simDays').value)
-
-		// Initialize our probability mass funtions for arrivals and load sizes.
-		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
-		dayEvents = []
-		for (var i=0;i<simDays;i++) {
-			// Weekend:
-			if (i%7==5||i%7==6) {dayEvents.push([i,1])}
-			// Weekday:
-			else {dayEvents.push([i,10])}
-		}
-		dayDistribution = new ProbMass(dayEvents)
-		var loadSizeDistribution = new ProbMass([[1,50],[2,25],[3,12],[4,6],[5,3],[6,1],[7,1],[8,1],[9,1]])
-		// Draw the distributions:
-		new Highcharts.Chart(arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
-		new Highcharts.Chart(loadSizeDistribution.toHighChartDesc('loadDistGraph'))
-
-		// Generating Users
-		function randomUserGen(numOfUsers) {
-			var userList = []
-			for (var i=0;i<numOfUsers;i++) {
-				var daySample = dayDistribution.sample()
-				var arrSample = arrivalDistribution.sample()
-				var loadSample = loadSizeDistribution.sample()
-				var randomUser = {GUID:i, arrivalTime:daySample*24+arrSample, loadSize:loadSample, expectedWait:loadSample/Math.min(nodesPerUser,computeNodes), actualWait:null}
-				userList.push(randomUser)
-			}
-			return userList
-		}
-		//TODO: compensate for weekends?
-		randomUsers = randomUserGen(usersPerDay*simDays)
-
-		// Drawing the Arrivals
-		arrivalCounts = []
-		loadTotals = []
-		for (var i=0;i<24*simDays;i++) {
-			arrivalCounts[i] = null
-			loadTotals[i] = null
-			for (j=0;j<randomUsers.length;j++) {
-				if (randomUsers[j]['arrivalTime'] == i) {
-					arrivalCounts[i] += 1
-					loadTotals[i] += randomUsers[j]['loadSize']
-				}
-			}
-		}
-		var arrivalChartOptions = {
-			series: [{name: 'Arrivals', type:'column', data: arrivalCounts},{name:'Total Load Addition', type:'line', data:loadTotals}],
-			chart: {renderTo: 'arrivalData'},
-			plotOptions: {column:{stacking: 'normal'}},
-			title: {text: 'Arrival Data'},
-			legend: {enabled: false},
-			credits: {enabled: false},
-			yAxis: {title:{text:null}}
-		}
-		new Highcharts.Chart(arrivalChartOptions)
-
-		// Drawing the nodes working and queue:
-		nodesWorking = []
-		queueSize = []
-		for (var i=0;i<24*simDays;i++) {
-			// Pull the new loads and past queue into the current queue.
-			if (i>0) {queueSize[i] = queueSize[i-1] + loadTotals[i]}
-			else {queueSize[i] = loadTotals[i]}
-			// Set as many nodes working as possible.
-			nodesWorking[i] = Math.min(queueSize[i], computeNodes)
-			// Take current work we're doing off the queue.
-			queueSize[i] = queueSize[i] - nodesWorking[i]
-		}
-		var workAndQueueChartOptions = {
-			series: [{name: 'Nodes Working', type:'column', data: nodesWorking},{name:'queueSize', type:'column', data:queueSize.map(function(x){return -1*x})}],
-			chart: {renderTo: 'workAndQueue'},
-			plotOptions: {column:{stacking: 'normal'}},
-			title: {text: 'Nodes Working and Queue'},
-			legend: {enabled: false},
-			credits: {enabled: false},
-			yAxis: {title:{text:null}}
-		}
-		new Highcharts.Chart(workAndQueueChartOptions)
-
-		// Figuring out wait times.
-		for (var i=0;i<24*simDays;i++) {
-			if (i==0) {hoursQueue = 0}
-			else {hoursQueue = queueSize[i-1]}
-			runningThisHour = randomUsers.filter(function(x){return x.arrivalTime==i})
-			for (user in runningThisHour) {
-				runningThisHour[user].actualWait = Math.floor(hoursQueue/computeNodes)+runningThisHour[user].loadSize/nodesPerUser
-				hoursQueue += runningThisHour[user].loadSize/nodesPerUser
-			}
-		}
-		waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
-		var waitTimeChartOptions = {
-			series: [{name: 'Wait Multiplier', type:'bar', data: waitTimes}],
-			chart: {renderTo: 'waitTimeMultipliers'},
-			plotOptions: {column:{stacking: 'normal'}},
-			title: {text: 'Wait Time (Multiples of Job Size)'},
-			legend: {enabled: false},
-			credits: {enabled: false},
-			yAxis: {title:{text:null}, plotLines:[{value:average(waitTimes),color:'#0d233a',width:2,zIndex:9,label:{text:'Average: ' + average(waitTimes).toPrecision(3)}}]}
-		}
-		new Highcharts.Chart(waitTimeChartOptions)
-	}
-	
+	// Single simulation run.
 	function singleRun(simDays, usersPerDay, nodesPerUser, computeNodes) {
 		// Initialize our probability mass funtions for arrivals and load sizes.
 		var arrivalDistribution = new ProbMass([[6,2],[7,5],[8,8],[9,11],[10,12],[11,12],[12,12],[13,12],[14,11],[15,8],[16,5],[17,2]])
-		dayEvents = []
+		var dayEvents = []
 		for (var i=0;i<simDays;i++) {
 			// Weekend:
 			if (i%7==5||i%7==6) {dayEvents.push([i,1])}
@@ -205,11 +109,11 @@
 			return userList
 		}
 		//TODO: compensate for weekends?
-		randomUsers = randomUserGen(usersPerDay*simDays)
+		var randomUsers = randomUserGen(usersPerDay*simDays)
 
 		// Arrivals
-		arrivalCounts = []
-		loadTotals = []
+		var arrivalCounts = []
+		var loadTotals = []
 		for (var i=0;i<24*simDays;i++) {
 			arrivalCounts[i] = null
 			loadTotals[i] = null
@@ -222,8 +126,8 @@
 		}
 
 		// Drawing the nodes working and queue:
-		nodesWorking = []
-		queueSize = []
+		var nodesWorking = []
+		var queueSize = []
 		for (var i=0;i<24*simDays;i++) {
 			// Pull the new loads and past queue into the current queue.
 			if (i>0) {queueSize[i] = queueSize[i-1] + loadTotals[i]}
@@ -244,39 +148,98 @@
 				hoursQueue += runningThisHour[user].loadSize/nodesPerUser
 			}
 		}
-		waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
-		return {maxQueueSize:max(queueSize),averageWaitMultiple:average(waitTimes)}
+		var waitTimes = randomUsers.map(function(x){return x.actualWait/x.expectedWait})
+		return {arrivalDistribution:arrivalDistribution, loadSizeDistribution:loadSizeDistribution, queueSize:queueSize, waitTimes:waitTimes, arrivalCounts:arrivalCounts, loadTotals:loadTotals, nodesWorking:nodesWorking, queueSize:queueSize, waitTimes:waitTimes}
 	}
 
-	function gridCompute(simDays, usersPerDayMin, usersPerDayStep, usersPerDayMax, nodesPerUser, computeNodesMin, computeNodesStep, computeNodesMax) {
-		var outputArray = []
-		for (var usersVar=usersPerDayMin;usersVar<=usersPerDayMax;usersVar+=usersPerDayStep) {
-			for (var nodesVar=computeNodesMin;nodesVar<=computeNodesMax;nodesVar+=computeNodesStep) {
-				var runResults = singleRun(simDays, usersVar, nodesPerUser, nodesVar)
-				outputArray.push({users:usersVar,nodes:nodesVar,maxQueueSize:runResults.maxQueueSize,averageWaitMultiple:runResults.averageWaitMultiple})
-			}
+	// Graphing a single run.
+	function graphSingle() {
+		//Pull in variables from the document.
+		var nodesPerUser = Number(document.getElementById('nodesPerUser').value)
+		var computeNodes = Number(document.getElementById('computeNodes').value)
+		var usersPerDay = Number(document.getElementById('usersPerDay').value)
+		var simDays = Number(document.getElementById('simDays').value)
+
+		// Run the simulation
+		var out = singleRun(simDays, usersPerDay, nodesPerUser, computeNodes)
+
+		// Draw the distributions:
+		new Highcharts.Chart(out.arrivalDistribution.toHighChartDesc('arrivalDistGraph'))
+		new Highcharts.Chart(out.loadSizeDistribution.toHighChartDesc('loadDistGraph'))
+
+
+		// Drawing the Arrivals
+		var arrivalChartOptions = {
+			series: [{name:'Arrivals', type:'column', data:out.arrivalCounts},{name:'Total Load Addition', type:'line', data:out.loadTotals}],
+			chart: {renderTo:'arrivalData'},
+			plotOptions: {column:{stacking:'normal'}},
+			title: {text:'Arrival Data'},
+			legend: {enabled:false},
+			credits: {enabled:false},
+			yAxis: {title:{text:null}}
 		}
-		return outputArray
+		new Highcharts.Chart(arrivalChartOptions)
+
+		// Drawing the nodes working and queue:
+		var workAndQueueChartOptions = {
+			series: [{name: 'Nodes Working', type:'column', data:out.nodesWorking},{name:'queueSize', type:'column', data:out.queueSize.map(function(x){return -1*x})}],
+			chart: {renderTo: 'workAndQueue'},
+			plotOptions: {column:{stacking: 'normal'}},
+			title: {text: 'Nodes Working and Queue'},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			yAxis: {title:{text:null}}
+		}
+		new Highcharts.Chart(workAndQueueChartOptions)
+
+		// Drawing wait times:
+		var waitTimeChartOptions = {
+			series: [{name: 'Wait Multiplier', type:'column', data:out.waitTimes}],
+			chart: {renderTo: 'waitTimeMultipliers'},
+			plotOptions: {column:{stacking: 'normal'}},
+			title: {text: 'Wait Time (Multiples of Job Size)'},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			yAxis: {title:{text:null}, plotLines:[{value:average(out.waitTimes),color:'#0d233a',width:2,zIndex:9,label:{text:'Average: ' + average(out.waitTimes).toPrecision(3)}}]}
+		}
+		new Highcharts.Chart(waitTimeChartOptions)
+	}
+	
+	// graph a whole set of runs.
+	function graphGrid() {
+		// Run sim repeatedly over a set of usersPerday and computeNodes.
+		function gridCompute(simDays, usersPerDayMin, usersPerDayStep, usersPerDayMax, nodesPerUser, computeNodesMin, computeNodesStep, computeNodesMax) {
+			var outputArray = []
+			for (var usersVar=usersPerDayMin;usersVar<=usersPerDayMax;usersVar+=usersPerDayStep) {
+				for (var nodesVar=computeNodesMin;nodesVar<=computeNodesMax;nodesVar+=computeNodesStep) {
+					var runResults = singleRun(simDays, usersVar, nodesPerUser, nodesVar)
+					outputArray.push({users:usersVar,nodes:nodesVar,maxQueueSize:max(runResults.queueSize),averageWaitMultiple:average(runResults.waitTimes)})
+				}
+			}
+			return outputArray
+		}
+
+		// Run a bubble test.
+		var bubbleOutput = gridCompute(Number($('#gridSimDays').attr('value')), Number($('#gridUsersPerDayMin').attr('value')), Number($('#usersPerDayStepSize').attr('value')), Number($('#gridUsersPerDayMax').attr('value')), Number($('#gridNodesPerUser').attr('value')), Number($('#gridComputeNodesMin').attr('value')), Number($('#computeNodesStepSize').attr('value')), Number($('#gridComputeNodesMax').attr('value')))
+
+		// Graph it.
+		bubbleGraphData=[]
+		for (var indy in bubbleOutput) {
+			bubbleGraphData.push([bubbleOutput[indy].users, bubbleOutput[indy].nodes, bubbleOutput[indy].averageWaitMultiple])
+		}
+		var bubbleChartOptions = {
+			series: [{name: '(usersPerDay, computeNodes)', data: bubbleGraphData}],
+			chart: {renderTo: 'gridBubbles', type:'bubble'},
+			title: {text: 'Scaling with Users and Nodes'},
+			legend: {enabled: false},
+			credits: {enabled: false},
+			xAxis: {title:{text:'usersPerDay'}},
+			yAxis: {title:{text:'computeNodes'}}
+		}
+		new Highcharts.Chart(bubbleChartOptions)
 	}
 
-	// Run calculations on load.
-	execute()
-
-	// Run a bubble test.
-	var bubbleOutput = gridCompute(5, 30,10,200, 1, 10,2,20 )
-	// Graph a bubbleCarlo.
-	bubbleGraphData=[]
-	for (var indy in bubbleOutput) {
-		bubbleGraphData.push([bubbleOutput[indy].users, bubbleOutput[indy].nodes, bubbleOutput[indy].averageWaitMultiple])
-	}
-	var bubbleChartOptions = {
-		series: [{name: '(usersPerDay, computeNodes)', data: bubbleGraphData}],
-		chart: {renderTo: 'gridBubbles', type:'bubble'},
-		title: {text: 'Scaling with Users and Nodes'},
-		legend: {enabled: false},
-		credits: {enabled: false},
-		xAxis: {title:{text:'usersPerDay'}},
-		yAxis: {title:{text:'computeNodes'}}
-	}
-	new Highcharts.Chart(bubbleChartOptions)
+	// On load: 
+	graphSingle()
+	graphGrid()
 </script>
