@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"av",
+				"average"
+			],
+			[
+				"average",
+				"averageWaitMultiple"
+			],
+			[
 				"que",
 				"queueSize"
 			],
@@ -255,17 +263,29 @@
 			"file": "/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 			"settings":
 			{
-				"buffer_size": 7064,
+				"buffer_size": 11308,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/dwp0/Dropbox/clusterSizer/screenshot.png",
+			"settings":
+			{
+				"buffer_size": 339485,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 110.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"git add",
+				"Git: Add Current File"
+			],
 			[
 				"git push",
 				"Git: Push"
@@ -273,10 +293,6 @@
 			[
 				"git commit",
 				"Git: Commit"
-			],
-			[
-				"git add",
-				"Git: Add Current File"
 			],
 			[
 				"repl",
@@ -708,8 +724,9 @@
 	},
 	"file_history":
 	[
-		"/C/Users/dwp0/Dropbox/ClusterSizer/clusterSizer.html",
 		"/C/Users/dwp0/Dropbox/clusterSizer/README.md",
+		"/C/Users/dwp0/Dropbox/clusterSizer/sizeMonteCarlo.html",
+		"/C/Users/dwp0/Dropbox/ClusterSizer/clusterSizer.html",
 		"/C/Users/dwp0/Dropbox/ClusterSizer/README.md",
 		"/C/Users/dwp0/Desktop/jstat-1.0.0.js",
 		"/C/Users/dwp0/Dropbox/OMF/omf/templates/gridEdit.html",
@@ -834,8 +851,7 @@
 		"/C/Users/dwp0/Dropbox/OMF/omf/feeders/ACEC Full Conversion LOS/main.glm",
 		"/C/Users/dwp0/Dropbox/OMF/omf/analyses/ACECHouses/studies/acec/main.glm",
 		"/C/Users/dwp0/Dropbox/OMF/omf/milToGridlab.py",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/settings.txt",
-		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/houses.glm"
+		"/C/Users/dwp0/Dropbox/OMF/omf/scratch/ieee13house/settings.txt"
 	],
 	"find":
 	{
@@ -843,7 +859,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 92.0,
 		"where_history":
 		[
 			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
@@ -876,6 +892,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"expectedWait",
+			"nodesPerUser",
+			"$",
+			"'#",
+			".attr('value')",
+			"waitTime",
+			"gridSimDays",
+			"('value')",
+			"$(",
+			"graphSingle",
+			"usersPerDayMax, nodesPerUser, computeNodesMin, computeNodesStep, computeNodesMax) {\n		var outputArray = []\n		for (var usersVar=usersPerDayMin;usersVar<=usersPerDayMax;usersVar+=usersPerDayStep) {\n			for (var nodesVar=computeNodesMin;nodesVar<=computeNodesMax;nodesVar+=computeNodesStep) {",
+			"monte",
+			"singleMonteRun(",
+			"monte",
+			"monteBubbles",
+			"monte",
+			"monteCarlo(",
+			"monteCarlo",
+			"average",
 			"Todo",
 			"24*simDays",
 			"arrivalData",
@@ -984,26 +1019,7 @@
 			"csv",
 			"output",
 			"copy",
-			"\\\\n'",
-			"\\n'",
-			"outputBuffer.*",
-			"el",
-			"scratch",
-			"__util__",
-			"interval ",
-			"interval\\w+\\d+;",
-			"interval",
-			"metadata.txt",
-			"pprint",
-			"__util__",
-			"fileSlurp",
-			"lib.",
-			"fileSlurp",
-			"pprint",
-			"PST",
-			"PDT",
-			"plotLine",
-			"'simLengthUnits':"
+			"\\\\n'"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1154,15 +1170,24 @@
 					"file": "/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 					"settings":
 					{
-						"buffer_size": 7064,
+						"buffer_size": 11308,
 						"regions":
 						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+								],
+								"scope": "bookmarks"
+							}
 						},
 						"selection":
 						[
 							[
-								5880,
-								5880
+								739,
+								739
 							]
 						],
 						"settings":
@@ -1171,7 +1196,33 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2513.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/dwp0/Dropbox/clusterSizer/screenshot.png",
+					"settings":
+					{
+						"buffer_size": 339485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1319,
+								1319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
