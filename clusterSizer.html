@@ -9,6 +9,14 @@
 		label {margin-left:2px;margin-right:4px;}
 		div.distroGraph {width:49%;height:100px;display:inline-block}
 		div.outputGraph {height:200px}
+		button {
+			background:seagreen;
+			height: 28px;
+			border-radius: 5px;
+			border: none;
+			color: white;
+			cursor:pointer; }
+		button:hover {background:mediumseagreen;}
 	</style>
 </head>
 
@@ -32,12 +40,13 @@
 <div id='gridInput'>
 	<div class='inputBox'><label>simDays</label><input id='gridSimDays' type='text' value='4'/></div>
 	<div class='inputBox'><label>usersPerDayMin</label><input id='gridUsersPerDayMin' type='text' value='20'/></div>
-	<div class='inputBox'><label>usersPerDayStepSize</label><input id='usersPerDayStepSize' type='text' value='10'/></div>
+	<div class='inputBox'><label>usersPerDayStepSize</label><input id='gridUsersPerDayStepSize' type='text' value='10'/></div>
 	<div class='inputBox'><label>usersPerDayMax</label><input id='gridUsersPerDayMax' type='text' value='200'/></div>
 	<div class='inputBox'><label>nodesPerUser</label><input id='gridNodesPerUser' type='text' value='1'/></div>
 	<div class='inputBox'><label>computeNodesMin</label><input id='gridComputeNodesMin' type='text' value='10'/></div>
-	<div class='inputBox'><label>computeNodesStepSize</label><input id='computeNodesStepSize' type='text' value='2'/></div>
+	<div class='inputBox'><label>computeNodesStepSize</label><input id='gridComputeNodesStepSize' type='text' value='2'/></div>
 	<div class='inputBox'><label>computeNodesMax</label><input id='gridComputeNodesMax' type='text' value='20'/></div>
+	<div class='inputBox'><label>acceptableMultiple</label><input id='gridAcceptableMultiple' type='text' value='2'/></div>
 	<button onclick='javascript:graphGrid()'>Re-execute</button>
 </div>
 <div id='gridBubbles'></div>
@@ -171,7 +180,7 @@
 		// Drawing the Arrivals
 		var arrivalChartOptions = {
 			series: [{name:'Arrivals', type:'column', data:out.arrivalCounts},{name:'Total Load Addition', type:'line', data:out.loadTotals}],
-			chart: {renderTo:'arrivalData'},
+			chart: {renderTo:'arrivalData',zoomType:'x'},
 			plotOptions: {column:{stacking:'normal'}},
 			title: {text:'Arrival Data'},
 			legend: {enabled:false},
@@ -183,7 +192,7 @@
 		// Drawing the nodes working and queue:
 		var workAndQueueChartOptions = {
 			series: [{name: 'Nodes Working', type:'column', data:out.nodesWorking},{name:'queueSize', type:'column', data:out.queueSize.map(function(x){return -1*x})}],
-			chart: {renderTo: 'workAndQueue'},
+			chart: {renderTo: 'workAndQueue',zoomType:'x'},
 			plotOptions: {column:{stacking: 'normal'}},
 			title: {text: 'Nodes Working and Queue'},
 			legend: {enabled: false},
@@ -195,7 +204,7 @@
 		// Drawing wait times:
 		var waitTimeChartOptions = {
 			series: [{name: 'Wait Multiplier', type:'column', data:out.waitTimes}],
-			chart: {renderTo: 'waitTimeMultipliers'},
+			chart: {renderTo: 'waitTimeMultipliers',zoomType:'x'},
 			plotOptions: {column:{stacking: 'normal'}},
 			title: {text: 'Wait Time (Multiples of Job Size)'},
 			legend: {enabled: false},
@@ -219,16 +228,18 @@
 			return outputArray
 		}
 
+
+
 		// Run a bubble test.
-		var bubbleOutput = gridCompute(Number($('#gridSimDays').attr('value')), Number($('#gridUsersPerDayMin').attr('value')), Number($('#usersPerDayStepSize').attr('value')), Number($('#gridUsersPerDayMax').attr('value')), Number($('#gridNodesPerUser').attr('value')), Number($('#gridComputeNodesMin').attr('value')), Number($('#computeNodesStepSize').attr('value')), Number($('#gridComputeNodesMax').attr('value')))
+		var bubbleOutput = gridCompute(Number(document.getElementById('gridSimDays').value), Number(document.getElementById('gridUsersPerDayMin').value), Number(document.getElementById('gridUsersPerDayStepSize').value), Number(document.getElementById('gridUsersPerDayMax').value), Number(document.getElementById('gridNodesPerUser').value), Number(document.getElementById('gridComputeNodesMin').value), Number(document.getElementById('gridComputeNodesStepSize').value), Number(document.getElementById('gridComputeNodesMax').value))
 
 		// Graph it.
-		bubbleGraphData=[]
+		var bubbleGraphData=[]
 		for (var indy in bubbleOutput) {
 			bubbleGraphData.push([bubbleOutput[indy].users, bubbleOutput[indy].nodes, bubbleOutput[indy].averageWaitMultiple])
 		}
 		var bubbleChartOptions = {
-			series: [{name: '(usersPerDay, computeNodes)', data: bubbleGraphData}],
+			series: [{name: '(usersPerDay, computeNodes)', data:bubbleGraphData, negativeColor:Highcharts.getOptions().colors[2], zThreshold:Number(document.getElementById('gridAcceptableMultiple').value)}],
 			chart: {renderTo: 'gridBubbles', type:'bubble'},
 			title: {text: 'Scaling with Users and Nodes'},
 			legend: {enabled: false},
