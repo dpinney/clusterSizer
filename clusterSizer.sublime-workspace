@@ -263,7 +263,7 @@
 			"file": "/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 			"settings":
 			{
-				"buffer_size": 11308,
+				"buffer_size": 11307,
 				"line_ending": "Windows"
 			}
 		},
@@ -279,12 +279,12 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 60.0,
 		"selected_items":
 		[
 			[
-				"git add",
-				"Git: Add Current File"
+				"pro clo",
+				"Project: Close"
 			],
 			[
 				"git push",
@@ -293,6 +293,10 @@
 			[
 				"git commit",
 				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
 			],
 			[
 				"repl",
@@ -859,7 +863,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 92.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"C:\\Users\\dwp0\\Dropbox\\OMF\\omf\\analyses",
@@ -1170,7 +1174,7 @@
 					"file": "/C/Users/dwp0/Dropbox/clusterSizer/clusterSizer.html",
 					"settings":
 					{
-						"buffer_size": 11308,
+						"buffer_size": 11307,
 						"regions":
 						{
 							"bookmarks":
@@ -1186,8 +1190,8 @@
 						"selection":
 						[
 							[
-								739,
-								739
+								758,
+								758
 							]
 						],
 						"settings":
