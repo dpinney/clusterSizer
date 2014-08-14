@@ -2,7 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "/C/Users/dwp0/Dropbox/clusterSizer"
+			"follow_symlinks": true,
+			"path": "."
 		}
 	]
 }
